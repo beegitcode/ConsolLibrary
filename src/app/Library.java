@@ -1,26 +1,28 @@
 package app;
 
 import data.Book;
+import utils.DataReader;
 
 public class Library {
 
 	public static void main(String[] args) {
-		final String appName = "Biblioteka v12";
+		final String appName = "Biblioteka v14";
 
 		Book[] books = new Book[1000];
+		DataReader datareader = new DataReader();
 
-		books[0] = new Book("W pustyni i w puszczy", "Henryk Sienkiewicz", 2010, 296, "Greg", "9788373271890");
-		books[1] = new Book("Java. Efektywne programowanie. Wydanie II", "Joshua Bloch", 2009, 352, "Helion",
-				"9788324620845");
-		books[2] = new Book("SCJP Sun Certified Programmer for Java 6 Study Guide", "Bert Bates, Katherine Sierra",
-				2008, 851, "McGraw-Hill Osborne Media", "9780071591065");
+		books[0] = datareader.readAndCreateBook();
+		books[1] = datareader.readAndCreateBook();
+		datareader.close();
 
+		
+		
 		System.out.print(appName);
 		System.out.println("Ksi¹¿ki dostêpne w bibliotece:");
 		books[0].printInfo();
 		books[1].printInfo();
-		books[2].printInfo();
-		System.out.println("System mo¿e przechowywaæ do : " + books.length);
+
+		System.out.println("System mo¿e przechowywaæ do: " + books.length  + " publikacji. ");
 
 	}
 
