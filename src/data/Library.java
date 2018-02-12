@@ -10,7 +10,7 @@ public class Library {
 	private Book[] books;
 	private int booksNumber;
 
-	private Library() {
+	public Library() {
 		books = new Book[maxBooks];
 	}
 
@@ -29,16 +29,17 @@ public class Library {
 		} else {
 			System.out.println("Brak miejsca w systemie");
 		}
-		
+
 	}
-	
+
 	public void printBooks() {
-		if (booksNumber == 0 ) {
+		if (booksNumber == 0) {
 			System.out.println("Brak ksi¹¿ek w systemie");
 		}
-	
-}
-		
+		for (int i = 0; i < booksNumber; i++) {
+			books[i].printInfo();
+		}
+
 	}
 
-
+}
