@@ -2,14 +2,15 @@ package app;
 
 public class LibraryApp {
 
+	public static final String APP_NAME = "Biblioteka v15";
+
 	public static void main(String[] args) {
-		final String appName = "Biblioteka v15";
-		System.out.println(appName);
-		
+
+		System.out.println(APP_NAME);
+
 		LibraryControl libaryControl = new LibraryControl();
-		libaryControl.coontrolLoop();
-		
-		
+		libaryControl.controlLoop();
+
 	}
-	
+
 }

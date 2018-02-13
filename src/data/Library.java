@@ -1,17 +1,13 @@
 package data;
 
-import java.util.Iterator;
-
-import utils.DataReader;
-
 public class Library {
 
-	public final int maxBooks = 1000;
+	public static final int MAX_BOOKS = 1000;
 	private Book[] books;
 	private int booksNumber;
 
 	public Library() {
-		books = new Book[maxBooks];
+		books = new Book[MAX_BOOKS];
 	}
 
 	public Book[] getBooks() {
@@ -22,9 +18,9 @@ public class Library {
 		return booksNumber;
 	}
 
-	public void addBook(Book buk) {
-		if (booksNumber < maxBooks) {
-			books[booksNumber] = buk;
+	public void addBook(Book boook) {
+		if (booksNumber < MAX_BOOKS) {
+			books[booksNumber] = boook;
 			booksNumber++;
 		} else {
 			System.out.println("Brak miejsca w systemie");
