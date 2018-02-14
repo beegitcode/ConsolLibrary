@@ -47,16 +47,16 @@ public class DataReader {
 		
 		System.out.println("Rok: ");
 		int year = sc.nextInt();
-		
+		sc.nextLine();
 		System.out.println("Wydawnictwo: ");
 		String publisher = sc.nextLine();
 		
 		System.out.println("Miesi¹c: ");
 		int month = sc.nextInt();
-		
+		sc.nextLine();
 		System.out.println("Dzieñ: ");
 		int day = sc.nextInt();
-		
+		sc.nextLine();
 		System.out.println("Jêzyk: ");
 		String language = sc.nextLine();
 
