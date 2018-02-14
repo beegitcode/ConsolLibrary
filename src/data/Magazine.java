@@ -40,8 +40,8 @@ public class Magazine extends Publication {
 		this.setLanguage(language);
 	}
 	public void printInfo() {
-        String info = getTitle() + "; " + getPublisher() + "; " + getYear() + "-"
-                + getMonth() + "-" + getDay() + "; " + getLanguage();
+        String info = getTitle() + " ; " + getPublisher() + " ; " + getYear() + " ; "
+                + getMonth() + " ; " + getDay() + " ; " + getLanguage();
         System.out.println(info);
     }
 	
