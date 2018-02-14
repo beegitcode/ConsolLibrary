@@ -32,9 +32,9 @@ public class Library {
 		return magazinesNumber;
 	}
 
-	public void addMagazine(Magazine magazine) {
+	public void addMagazine(Magazine magaz) {
 		if (magazinesNumber < MAX_MAGAZINES) {
-			magazines[magazinesNumber] = magazine;
+			magazines[magazinesNumber] = magaz;
 			magazinesNumber++;
 		} else {
 			System.out.println("Brak miejsca na magazyny");
