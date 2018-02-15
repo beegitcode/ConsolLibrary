@@ -5,7 +5,7 @@ public class Magazine extends Publication {
 	private int month;
 	private int day;
 	private String language;
-	
+
 	public int getMonth() {
 		return month;
 	}
@@ -30,22 +30,48 @@ public class Magazine extends Publication {
 		this.language = language;
 	}
 
-	public Magazine(String title, int year, String publisher,
-			int month, int day, String language) {
+	public Magazine(String title, int year, String publisher, int month, int day, String language) {
 		super(year, title, publisher);
-		//this.setTitle(title);
-		//this.setYear(year);
-		//this.setPublisher(publisher);
 		this.setMonth(month);
 		this.setDay(day);
 		this.setLanguage(language);
 	}
-	public void printInfo() {
-        String info = getTitle() + " ; " + getPublisher() + " ; " + getYear() + " ; "
-                + getMonth() + " ; " + getDay() + " ; " + getLanguage();
-        System.out.println(info);
-    }
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return getTitle() + " ; " + getPublisher() + " ; " + getYear() + " ; " + getMonth() + " ; " + getDay() + " ; "
+				+ getLanguage();
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + day;
+		result = prime * result + ((language == null) ? 0 : language.hashCode());
+		result = prime * result + month;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Magazine other = (Magazine) obj;
+		if (day != other.day)
+			return false;
+		if (language == null) {
+			if (other.language != null)
+				return false;
+		} else if (!language.equals(other.language))
+			return false;
+		if (month != other.month)
+			return false;
+		return true;
+	}
+
 }
