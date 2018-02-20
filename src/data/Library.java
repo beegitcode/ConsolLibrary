@@ -2,73 +2,68 @@ package data;
 
 public class Library {
 
-	public static final int MAX_BOOKS = 1000;
+	public static final int MAX_PUBLICATIONS = 2000;
 	public static final int MAX_MAGAZINES = 1000;
 
-	private Book[] books;
-	private int booksNumber;
+	private Publication[] publications;
+	private int publicationNumber;
 
-	private Magazine[] magazines;
-	private int magazinesNumber;
+	// private Magazine[] magazines;
+	// private int magazinesNumber;
 
 	public Library() {
-		books = new Book[MAX_BOOKS];
-		magazines = new Magazine[MAX_MAGAZINES];
+
+		publications = new Publication[MAX_PUBLICATIONS];
 	}
 
-	public Book[] getBooks() {
-		return books;
-	}
 
-	public int getBooksNumber() {
-		return booksNumber;
-	}
-
-	public Magazine[] getMagazines() {
-		return magazines;
-	}
-
-	public int getMagazinesNumber() {
-		return magazinesNumber;
+	public void addPublication(Publication publicat) {
+		if (publicationNumber < MAX_PUBLICATIONS) {
+			publications[publicationNumber] = publicat;
+			publicationNumber++;
+		} else {
+			System.out.println("Brak miejsca w systemie");
+		}
 	}
 
 	public void addMagazine(Magazine magaz) {
-		if (magazinesNumber < MAX_MAGAZINES) {
-			magazines[magazinesNumber] = magaz;
-			magazinesNumber++;
-		} else {
-			System.out.println("Brak miejsca na magazyny");
-		}
+		addPublication(magaz);
 
 	}
 
 	public void addBook(Book boook) {
-		if (booksNumber < MAX_BOOKS) {
-			books[booksNumber] = boook;
-			booksNumber++;
-		} else {
-			System.out.println("Brak miejsca na ksi¹¿ki w systemie");
-		}
+		addPublication(boook);
 
 	}
 
 	public void printMagazine() {
-		if (magazinesNumber == 0) {
-			System.out.println("Brak magazynów w systemie");
+		int countMagazines = 0;
+		for (int i = 0; i < publicationNumber; i++) {
+			if (publications[i] instanceof Magazine) {
+				System.out.println(publications[i]);
+				countMagazines++;
+			}
+
 		}
-		for (int i = 0; i < magazinesNumber; i++) {
-			System.out.println(magazines[i]);
+		if (countMagazines == 0) {
+			System.out.println("Brak magazynów w bibliotece.");
+
 		}
 	}
 
 	public void printBooks() {
-		if (booksNumber == 0) {
-			System.out.println("Brak ksi¹¿ek w systemie");
-		}
-		for (int i = 0; i < booksNumber; i++) {
-			System.out.println(books[i]);
-		}
+		int countBooks = 0;
 
+		for (int i = 0; i < publicationNumber; i++) {
+			if (publications[i] instanceof Book) {
+				System.out.println(publications[i]);
+				countBooks++;
+			}
+
+		}
+		if (countBooks == 0) {
+			System.out.println("Brak ksi¹¿ek w biblitece.");
+
+		}
 	}
-
 }
