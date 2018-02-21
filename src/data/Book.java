@@ -46,8 +46,14 @@ public class Book extends Publication {
 
 	@Override
 	public String toString() {
-		return getTitle() + "; " + getAuthor() + "; " + getYear() + "; " + getPages() + "; " + getPublisher() + "; "
-				+ getIsbn();
+		StringBuilder print = new StringBuilder(32);
+		print.append(getTitle()).append("; ");
+		print.append(getAuthor()).append("; ");
+		print.append(getYear()).append("; ");
+		print.append(getPages()).append("; ");
+		print.append(getPublisher()).append("; ");
+		print.append(getIsbn()).append("; ");
+		return print.toString();
 	}
 
 	@Override
