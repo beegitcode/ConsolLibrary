@@ -1,17 +1,15 @@
 package app;
 
+import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
+
 import data.Book;
 import data.Library;
 import data.Magazine;
 import utils.DataReader;
+import utils.LibraryUtils;
 
 public class LibraryControl {
-
-//	public static final int EXIT = 0;
-//	public static final int ADD_BOOK = 1;
-//	public static final int PRINT_BOOKS = 2;
-//	public static final int ADD_MAGAZINE = 3;
-//	public static final int PRINT_MAGAZINE = 4;
 
 	DataReader dataReader; // komunikacja z u¿ytkownikiem
 	Library library; // magazyn danych
@@ -22,34 +20,38 @@ public class LibraryControl {
 	}
 
 	public void controlLoop() {
-		Option option;
-		printOptions();
-		while ((option = Option.createFromInt(dataReader.getInt())) != Option.EXIT) {
-
-			switch (option) {
-			case ADD_BOOK:
-				addBook();
-				break;
-			case PRINT_BOOKS:
-				printBooks();
-				break;
-			case ADD_MAGAZINE:
-				addMagazine();
-				break;
-			case PRINT_MAGAZINE:
-				printMagazines();
-				break;
-			case EXIT:
-				;
+		Option option = null;
+		while (option != Option.EXIT) {
+			try {
+				printOptions();
+				option = Option.createFromInt(dataReader.getInt());
+				switch (option) {
+				case ADD_BOOK:
+					addBook();
+					break;
+				case PRINT_BOOKS:
+					printBooks();
+					break;
+				case ADD_MAGAZINE:
+					addMagazine();
+					break;
+				case PRINT_MAGAZINE:
+					printMagazines();
+					break;
+				case EXIT:
+					;
+				}
+			} catch (InputMismatchException e) {
+				System.out.println("Wprowadzono niepoprawne dane, publikacji nie dodano. ");
+			} catch (NoSuchElementException e) {
+				System.out.println("Wybrana opcja nie istnieje spróbuj ponownie. ");
 			}
-			printOptions();
-
 		}
 		dataReader.close();
 	}
 
 	private void printBooks() {
-		library.printBooks();
+		LibraryUtils.printBooks(library);
 	}
 
 	private void addBook() {
@@ -58,7 +60,7 @@ public class LibraryControl {
 	}
 
 	private void printMagazines() {
-		library.printMagazine();
+		LibraryUtils.printMagazine(library);
 	}
 
 	private void addMagazine() {
@@ -68,11 +70,9 @@ public class LibraryControl {
 
 	public void printOptions() {
 		System.out.println("Wybierz opcjê: ");
-		for (Option option: Option.values()) {
+		for (Option option : Option.values()) {
 			System.out.println(option);
 		}
-	
-	
 
 	}
 
