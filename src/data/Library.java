@@ -18,8 +18,8 @@ public class Library {
 		if (getPublicationNumber() == MAX_PUBLICATIONS) {
 			throw new ArrayIndexOutOfBoundsException("MAX_PUBLICATIONS " + MAX_PUBLICATIONS);
 		}
-		getPublications()[getPublicationNumber()] = publicat;
-		setPublicationNumber(getPublicationNumber() + 1);
+		publications[publicationNumber] = publicat;
+		publicationNumber++;
 	}
 
 	public void addMagazine(Magazine magaz) {
