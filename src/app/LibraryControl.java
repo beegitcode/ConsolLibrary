@@ -1,5 +1,6 @@
 package app;
 
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 
@@ -7,16 +8,28 @@ import data.Book;
 import data.Library;
 import data.Magazine;
 import utils.DataReader;
+import utils.FileManager;
 import utils.LibraryUtils;
 
 public class LibraryControl {
 
-	DataReader dataReader; // komunikacja z u¿ytkownikiem
-	Library library; // magazyn danych
+	private DataReader dataReader; // komunikacja z u¿ytkownikiem
+	private Library library; // magazyn danych
+
+	private FileManager fileManager;
 
 	public LibraryControl() {
 		dataReader = new DataReader();
-		library = new Library();
+		fileManager = new FileManager();
+		try {
+			library = fileManager.readLibraryFromFile();
+			System.out.println("Wczytano dane biblioteki z pliku. ");
+
+		} catch (ClassNotFoundException | IOException e) {
+			library = new Library();
+			System.out.println("Utworzono now¹ bazê biblioteki");
+		}
+
 	}
 
 	public void controlLoop() {
@@ -39,7 +52,7 @@ public class LibraryControl {
 					printMagazines();
 					break;
 				case EXIT:
-					;
+					exit();
 				}
 			} catch (InputMismatchException e) {
 				System.out.println("Wprowadzono niepoprawne dane, publikacji nie dodano. ");
@@ -74,6 +87,10 @@ public class LibraryControl {
 			System.out.println(option);
 		}
 
+	}
+
+	private void exit() {
+		fileManager.writeLibraryToFile(library);
 	}
 
 	private enum Option {
